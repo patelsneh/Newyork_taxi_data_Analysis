@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    jupyter:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        container_name: newyork_taxi_data_analysis
+        ports:
+            - "8888:8888"
+        env_file:
+            - .env
+        environment:
+            - GRANT_SUDO=yes
+            - JUPYTER_ENABLE_LAB=yes
+        volumes:
+            - ./:/home/jovyan/work
+            - $HOME/.aws/credentials:/home/jovyan/.aws/credentials:ro
